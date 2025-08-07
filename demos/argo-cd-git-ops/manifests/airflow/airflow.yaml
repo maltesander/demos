@@ -22,7 +22,7 @@ spec:
     #
     # TODO(@maltesander): Adapt branch to main / 25.7.0
     dagsGitSync:
-      - repo: https://github.com/stackabletech/demos/
+      - repo: https://github.com/maltesander/demos/
         branch: spike/argocd-demo
         gitFolder: "demos/argo-cd-git-ops/dags"
         depth: 2
@@ -55,6 +55,8 @@ spec:
       AIRFLOW__LOGGING__REMOTE_LOGGING: "True"
       AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER: s3://demo/airflow-task-logs/
       AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID: minio
+      # 20 seconds to reload the DAGS folder (default: 300)
+      AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 20
     podOverrides: &podOverrides
       spec:
         containers:
